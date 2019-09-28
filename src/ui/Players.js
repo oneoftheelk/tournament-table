@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { addPlayer } from './../redux/playersReducer';
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
 
@@ -26,17 +27,19 @@ const Players = (props) => {
         <>
             { playersElements }
             <button onClick={toggleForm}>{'Add player'}</button>
-            { isFormDisplayed && <AddPlayerForm toggleForm={toggleForm} /> }
+            { isFormDisplayed
+                && <AddPlayerForm toggleForm={toggleForm}
+                    addPlayer={props.addPlayer} /> }
         </>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        players: state.players
+        players: state.players.players
     }
 }
 
-const PlayersContainer = connect(mapStateToProps, {})(Players);
+const PlayersContainer = connect(mapStateToProps, {addPlayer})(Players);
 
 export default PlayersContainer;
