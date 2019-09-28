@@ -1,11 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Navigation from './ui/Navigation';
+import routes from './routes';
+import Players from './ui/Players';
 
 function App() {
 	return (
 		<div>
-		111
+			<Navigation routes={routes.filter(route => route.isNavBar)} />
+			<Players />
 		</div>
 	);
 }
