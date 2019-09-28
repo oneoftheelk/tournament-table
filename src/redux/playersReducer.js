@@ -8,7 +8,11 @@ const initialState = [
 
 const playersReducer = (state = initialState, action) => {
     switch(action.type) {
-
+        // case ADD_PLAYER: {
+        //     return {
+        //         ...state, newPlayer
+        //     }
+        // }
 
         default: {
             return state;
@@ -16,8 +20,6 @@ const playersReducer = (state = initialState, action) => {
     }
 }
 
-const addPlayer = () => ({
-
-})
+// const addPlayer = (newPlayer) => ({ type: ADD_PLAYER, newPlayer });
 
 export default playersReducer;
