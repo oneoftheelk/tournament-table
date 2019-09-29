@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { addPlayer } from '../../redux/playersReducer';
+import { formTable } from './../../redux/tableReducer';
 import Player from './Player/Player';
 import AddPlayerForm from './AddPlayerForm/AddPlayerForm';
 
@@ -22,7 +23,7 @@ const Players = (props) => {
             selected={player.selected} />
     })
 
-    const toggleForm = () => {
+    const toggleAddPlayerForm = () => {
         if (isFormDisplayed) {
             toggleFormDisplay(false);
         } else {
@@ -34,14 +35,33 @@ const Players = (props) => {
         changeFilterValue(event.currentTarget.value);
     }
 
+    const clearFilter = () => {
+        changeFilterValue('');
+    }
+
+    const formTable = () => {
+        if (props.selectedPlayersId.length === 8) {
+            const playersForTable = props.selectedPlayersId
+                .map( player => player )
+                .sort( (player1, player2) => {
+                    return player1.rating < player2.rating ? 1 : -1
+                });
+            props.formTable(playersForTable);
+        } else {
+            console.log('Please add select exactly 8 players');
+        }
+    }
+
     return (
         <>
             <input value={filterValue} onChange={changeFilter} placeholder={'name'} />
+            <button onClick={clearFilter}>{'Clear filter'}</button>
             { playersElements }
-            <button onClick={toggleForm}>{'Add player'}</button>
+            <button onClick={toggleAddPlayerForm}>{'Add player'}</button>
             { isFormDisplayed
-                && <AddPlayerForm toggleForm={toggleForm}
+                && <AddPlayerForm toggleAddPlayerForm={toggleAddPlayerForm}
                     addPlayer={props.addPlayer} /> }
+            <button onClick={formTable}>Form a table</button>
         </>
     )
 }
@@ -49,9 +69,10 @@ const Players = (props) => {
 const mapStateToProps = (state) => {
     return {
         players: state.players.players,
+        selectedPlayersId: state.players.selectedPlayersId
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {addPlayer})
+    connect(mapStateToProps, {addPlayer, formTable})
 )(Players);

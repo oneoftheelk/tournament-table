@@ -27,8 +27,8 @@ const AddPlayerForm = (props) => {
         <div>
             <input value={nameValue} onChange={changeName} placeholder={'name'} />
             <input value={ratingValue} onChange={changeRating} placeholder={'rating'} />
-            <button onClick={addPlayer}>Add</button>
-            <button onClick={props.toggleForm}>Close</button>
+            <button onClick={addPlayer }>Add</button>
+            <button onClick={props.toggleAddPlayerForm}>Close</button>
         </div>
     )
 }

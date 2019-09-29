@@ -31,7 +31,7 @@ const playersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 players: state.players.map( player => {
-                    if (player.id === action.playerId) {
+                    if (player.id === action.id) {
                         return {
                             ...player,
                             selected: !player.selected
@@ -45,14 +45,14 @@ const playersReducer = (state = initialState, action) => {
         case ADD_PLAYER_TO_SELECTION: {
             return {
                 ...state,
-                selectedPlayersId: [...state.selectedPlayersId, action.playerId]
+                selectedPlayersId: [...state.selectedPlayersId, action.player]
             }
         }
         case REMOVE_PLAYER_FROM_SELECTION: {
             return {
                 ...state,
-                selectedPlayersId: state.selectedPlayersId.filter( id => {
-                    return id !== action.playerId
+                selectedPlayersId: state.selectedPlayersId.filter( player => {
+                    return player.id !== action.player.id
                 })
             }
         }
@@ -63,8 +63,8 @@ const playersReducer = (state = initialState, action) => {
 }
 
 export const addPlayer = (newPlayer) => ({ type: ADD_PLAYER, newPlayer });
-export const togglePlayerSelection = (playerId) => ({ type: SELECT_PLAYER, playerId });
-export const addPlayerToSelection = (playerId) => ({ type: ADD_PLAYER_TO_SELECTION, playerId });
-export const removePlayerFromSelection = (playerId) => ({ type: REMOVE_PLAYER_FROM_SELECTION, playerId });
+export const togglePlayerSelection = (id) => ({ type: SELECT_PLAYER, id });
+export const addPlayerToSelection = (player) => ({ type: ADD_PLAYER_TO_SELECTION, player });
+export const removePlayerFromSelection = (player) => ({ type: REMOVE_PLAYER_FROM_SELECTION, player });
 
 export default playersReducer;
