@@ -2,6 +2,7 @@ const ADD_PLAYER = 'tournament-table/playersReducer/ADD_PLAYER';
 const SELECT_PLAYER = 'tournament-table/playersReducer/SELECT_PLAYER';
 const ADD_PLAYER_TO_SELECTION = 'tournament-table/playersReducer/ADD_PLAYER_TO_SELECTION';
 const REMOVE_PLAYER_FROM_SELECTION = 'tournament-table/playersReducer/REMOVE_PLAYER_FROM_SELECTION';
+const REMOVE_ALL_PLAYERS_FROM_SELECTION = 'tournament-table/playersReducer/REMOVE_ALL_PLAYERS_FROM_SELECTION';
 
 const initialState = {
     players: [
@@ -56,6 +57,18 @@ const playersReducer = (state = initialState, action) => {
                 })
             }
         }
+        case REMOVE_ALL_PLAYERS_FROM_SELECTION: {
+            return {
+                ...state,
+                players: state.players.map( player => {
+                    return {
+                        ...player,
+                        selected: false
+                    }
+                }),
+                selectedPlayersId: [],
+            }
+        }
         default: {
             return state;
         }
@@ -66,5 +79,6 @@ export const addPlayer = (newPlayer) => ({ type: ADD_PLAYER, newPlayer });
 export const togglePlayerSelection = (id) => ({ type: SELECT_PLAYER, id });
 export const addPlayerToSelection = (player) => ({ type: ADD_PLAYER_TO_SELECTION, player });
 export const removePlayerFromSelection = (player) => ({ type: REMOVE_PLAYER_FROM_SELECTION, player });
+export const removeAllPlayersFromSelection = () => ({ type: REMOVE_ALL_PLAYERS_FROM_SELECTION });
 
 export default playersReducer;

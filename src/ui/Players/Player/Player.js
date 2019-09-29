@@ -5,7 +5,7 @@ import { togglePlayerSelection, addPlayerToSelection, removePlayerFromSelection 
 import style from './Player.module.scss';
 
 const Player = (props) => {
-    const {id, name, rating, selected} = props;
+    const {id, name, rating, selected} = props.player;
     const classForSelected = selected ? style.selected : '';
 
     const togglePlayerSelection = () => {

@@ -6,11 +6,7 @@ import Match from './Match/Match';
 
 const Table = (props) => {
 	const matches = props.matches.map( match => {
-		return <Match
-			key={match.id}
-			id={match.id}
-			firstPlayer={match.firstPlayer}
-			secondPlayer={match.secondPlayer} />
+		return <Match key={match.id} match={match} />
 	});
 
 	return (

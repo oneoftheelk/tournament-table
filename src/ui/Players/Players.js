@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { addPlayer } from '../../redux/playersReducer';
+import { addPlayer, removeAllPlayersFromSelection } from '../../redux/playersReducer';
 import { formTable } from './../../redux/tableReducer';
 import Player from './Player/Player';
 import AddPlayerForm from './AddPlayerForm/AddPlayerForm';
@@ -15,12 +15,7 @@ const Players = (props) => {
     })
 
     const playersElements = filteredPlayers.map( player => {
-        return <Player
-            key={player.id}
-            id={player.id}
-            name={player.name}
-            rating={player.rating}
-            selected={player.selected} />
+        return <Player key={player.id} player={player} />
     })
 
     const toggleAddPlayerForm = () => {
@@ -47,6 +42,7 @@ const Players = (props) => {
                     return player1.rating < player2.rating ? 1 : -1
                 });
             props.formTable(playersForTable);
+            props.removeAllPlayersFromSelection();
         } else {
             console.log('Please add select exactly 8 players');
         }
@@ -74,5 +70,5 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {addPlayer, formTable})
+    connect(mapStateToProps, {addPlayer, formTable, removeAllPlayersFromSelection})
 )(Players);
