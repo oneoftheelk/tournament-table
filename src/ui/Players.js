@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { addPlayer } from './../redux/playersReducer';
+import { addPlayer, togglePlayerSelection } from './../redux/playersReducer';
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
 
@@ -18,7 +18,9 @@ const Players = (props) => {
             key={player.id}
             id={player.id}
             name={player.name}
-            rating={player.rating} />
+            rating={player.rating}
+            selected={player.selected}
+            togglePlayerSelection={props.togglePlayerSelection} />
     })
 
     const toggleForm = () => {
@@ -47,10 +49,11 @@ const Players = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        players: state.players.players
+        players: state.players.players,
+        selectedPlayers: state.players.selectedPlayers
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {addPlayer})
+    connect(mapStateToProps, {addPlayer, togglePlayerSelection})
 )(Players);

@@ -1,11 +1,18 @@
 import React from 'react';
+import style from './player.module.scss';
 
 const Player = (props) => {
-    const {id, name, rating} = props;
+    const {id, name, rating, selected} = props;
+
+    const classForSelected = selected ? style.selected : '';
+
+    const togglePlayerSelection = () => {
+        props.togglePlayerSelection(id);
+    }
 
     return (
-        <div>
-            <span>{`${id} - ${name} (${rating})`}</span>
+        <div onClick={togglePlayerSelection}>
+            <span className={classForSelected}>{`${id} - ${name} (${rating})`}</span>
         </div>
     )
 }
