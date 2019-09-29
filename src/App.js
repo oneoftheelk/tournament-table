@@ -1,14 +1,18 @@
 import React from 'react';
-import './App.scss';
-import Navigation from './ui/Navigation';
+import style from './App.module.scss';
 import routes from './routes';
-import Players from './ui/Players';
+import Navigation from './ui/Navigation/Navigation';
+import Players from './ui/Players/Players';
+import Table from './ui/Table/Table';
 
-function App() {
+const App = () => {
 	return (
-		<div>
-			<Navigation routes={routes.filter(route => route.isNavBar)} />
-			<Players />
+		<div className={style.app}>
+            <div>
+                <Navigation routes={routes.filter(route => route.isNavBar)} />
+                <Players />
+            </div>
+            <Table />
 		</div>
 	);
 }

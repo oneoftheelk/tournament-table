@@ -12,7 +12,7 @@ const initialState = {
         {id: 5, name: 'Kaia Leon', rating: 140, selected: false},
         {id: 6, name: 'Jack Davies', rating: 150, selected: false},
         {id: 7, name: 'Jude Law', rating: 160, selected: false},
-        {id: 8, name: 'Alina Dubenok', rating: 170, selected: false},
+        {id: 8, name: 'Dale Cooper', rating: 170, selected: false},
         {id: 9, name: 'Daniella Floyd', rating: 180, selected: false},
         {id: 10, name: 'Jack Brady', rating: 190, selected: false}
     ],

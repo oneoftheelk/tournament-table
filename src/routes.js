@@ -1,5 +1,5 @@
 import App from './App';
-import Players from './ui/Players';
+import Players from './ui/Players/Players';
 
 const routes = [
     {

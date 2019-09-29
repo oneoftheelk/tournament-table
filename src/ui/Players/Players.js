@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { addPlayer } from './../redux/playersReducer';
-import Player from './Player';
-import AddPlayerForm from './AddPlayerForm';
+import { addPlayer } from '../../redux/playersReducer';
+import Player from './Player/Player';
+import AddPlayerForm from './AddPlayerForm/AddPlayerForm';
 
 const Players = (props) => {
     const [isFormDisplayed, toggleFormDisplay] = useState(false);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { togglePlayerSelection, addPlayerToSelection, removePlayerFromSelection } from './../redux/playersReducer';
-import style from './player.module.scss';
+import { togglePlayerSelection, addPlayerToSelection, removePlayerFromSelection } from '../../../redux/playersReducer';
+import style from './Player.module.scss';
 
 const Player = (props) => {
     const {id, name, rating, selected} = props;
