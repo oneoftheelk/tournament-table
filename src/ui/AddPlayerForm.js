@@ -14,7 +14,7 @@ const AddPlayerForm = (props) => {
 
     const addPlayer = () => {
         const newPlayer = {
-            id: Math.random().toFixed(2),
+            id: Math.random().toFixed(5),
             name: nameValue,
             rating: ratingValue
         };
