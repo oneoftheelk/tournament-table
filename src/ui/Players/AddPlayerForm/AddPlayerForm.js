@@ -1,36 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { reduxForm, Field } from 'redux-form';
+import { Input } from './../../common/FormControls/FormsControls';
+import { requiredField, numberField, stringWithSpacesField } from '../../../utils/validators/validators';
 
 const AddPlayerForm = (props) => {
-    const [nameValue, changeNameValue] = useState('');
-    const [ratingValue, changeRatingValue] = useState(100);
-
-    const changeName = (event) => {
-        changeNameValue(event.currentTarget.value);
-    }
-
-    const changeRating = (event) => {
-        changeRatingValue(+event.currentTarget.value);
-    }
-
-    const addPlayer = () => {
-        const newPlayer = {
-            id: Math.random().toFixed(5),
-            name: nameValue,
-            rating: ratingValue
-        };
-        props.addPlayer(newPlayer);
-        changeNameValue('');
-        changeRatingValue(100);
-    }
-
     return (
-        <div>
-            <input value={nameValue} onChange={changeName} placeholder={'name'} />
-            <input value={ratingValue} onChange={changeRating} placeholder={'rating'} />
-            <button onClick={addPlayer}>Add</button>
+        <form onSubmit={props.handleSubmit}>
+            <Field component={Input} name={'name'} placeholder={'name'}
+                validate={[requiredField, stringWithSpacesField]} />
+            <Field component={Input} name={'rating'} placeholder={'rating'}
+                validate={[requiredField, numberField]} />
+            <button>Add</button>
             <button onClick={props.toggleAddPlayerForm}>Close</button>
-        </div>
+        </form>
     )
 }
 
-export default AddPlayerForm;
+const AddPlayerReduxForm = reduxForm({ form: 'addPlayer' })(AddPlayerForm);
+
+const AddPlayerFormContainer = (props) => {
+    const addPlayer = (FormData) => {
+        const newPlayer = {
+            id: Math.random().toFixed(5),
+            name: FormData.name,
+            rating: +FormData.rating
+        };
+        props.addPlayer(newPlayer);
+        props.clearNewPlayerForm();
+    }
+
+    return (
+        <AddPlayerReduxForm onSubmit={addPlayer} toggleAddPlayerForm={props.toggleAddPlayerForm} />
+    )
+}
+
+export default AddPlayerFormContainer;

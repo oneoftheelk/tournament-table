@@ -22,13 +22,12 @@ const initialState = {
 
 const playersReducer = (state = initialState, action) => {
     switch(action.type) {
-        case ADD_PLAYER: {
+        case ADD_PLAYER:
             return {
                 ...state,
                 players: [...state.players, action.newPlayer]
             }
-        }
-        case SELECT_PLAYER: {
+        case SELECT_PLAYER:
             return {
                 ...state,
                 players: state.players.map( player => {
@@ -42,22 +41,19 @@ const playersReducer = (state = initialState, action) => {
                     }
                 })
             }
-        }
-        case ADD_PLAYER_TO_SELECTION: {
+        case ADD_PLAYER_TO_SELECTION:
             return {
                 ...state,
                 selectedPlayersId: [...state.selectedPlayersId, action.player]
             }
-        }
-        case REMOVE_PLAYER_FROM_SELECTION: {
+        case REMOVE_PLAYER_FROM_SELECTION:
             return {
                 ...state,
                 selectedPlayersId: state.selectedPlayersId.filter( player => {
                     return player.id !== action.player.id
                 })
             }
-        }
-        case REMOVE_ALL_PLAYERS_FROM_SELECTION: {
+        case REMOVE_ALL_PLAYERS_FROM_SELECTION:
             return {
                 ...state,
                 players: state.players.map( player => {
@@ -68,10 +64,7 @@ const playersReducer = (state = initialState, action) => {
                 }),
                 selectedPlayersId: [],
             }
-        }
-        default: {
-            return state;
-        }
+        default: return state;
     }
 }
 

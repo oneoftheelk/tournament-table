@@ -6,7 +6,7 @@ const initialState = {
 
 const tableReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FORM_TABLE: {
+        case FORM_TABLE:
             return {
                 ...state,
                 matches: [
@@ -20,10 +20,7 @@ const tableReducer = (state = initialState, action) => {
                         firstPlayerScore: 0, secondPlayerScore: 0}
                 ]
             }
-        }
-        default: {
-            return state;
-        }
+        default: return state;
     }
 }
 
