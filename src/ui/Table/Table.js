@@ -4,20 +4,25 @@ import { compose } from 'redux';
 import style from './Table.module.scss';
 import Match from './Match/Match';
 
-const Table = () => {
+const Table = (props) => {
+	const matches = props.matches.map( match => {
+		return <Match
+			key={match.id}
+			id={match.id}
+			firstPlayer={match.firstPlayer}
+			secondPlayer={match.secondPlayer} />
+	});
+
 	return (
 		<div className={style.table}>
-			<Match />
-			<Match />
-			<Match />
-			<Match />
+			{matches}
 		</div>
 	);
 }
 
 const mapStateToProps = (state) => {
     return {
-        matches: state.players.matches
+        matches: state.table.matches
     }
 }
 

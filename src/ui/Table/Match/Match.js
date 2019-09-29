@@ -1,11 +1,12 @@
 import React from 'react';
 import style from './Match.module.scss';
 
-const Match = () => {
+const Match = (props) => {
+	const {firstPlayer, secondPlayer} = props;
 	return (
-		<div>
-			<div>Name - Score</div>
-			<div>Name - Score</div>
+		<div className={style.match}>
+			<div>{firstPlayer.name}</div>
+			<div>{secondPlayer.name}</div>
 		</div>
 	);
 }
