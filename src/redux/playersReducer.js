@@ -2,9 +2,9 @@ const ADD_PLAYER = 'tournament-table/playersReducer/ADD_PLAYER';
 
 const initialState = {
     players: [
-        {id: 1, name: 'player 1', rating: 100},
-        {id: 2, name: 'player 2', rating: 110},
-        {id: 3, name: 'player 3', rating: 120}
+        {id: 1, name: 'Raman Tamilin', rating: 100},
+        {id: 2, name: 'Alina Dubenok', rating: 110},
+        {id: 3, name: 'Jack Brady', rating: 120}
     ]
 }
 

@@ -9,7 +9,7 @@ const AddPlayerForm = (props) => {
     }
 
     const changeRating = (event) => {
-        changeRatingValue(event.currentTarget.value);
+        changeRatingValue(+event.currentTarget.value);
     }
 
     const addPlayer = () => {

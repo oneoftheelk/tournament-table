@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { addPlayer } from './../redux/playersReducer';
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
 
 const Players = (props) => {
     const [isFormDisplayed, toggleFormDisplay] = useState(false);
+    const [filterValue, changeFilterValue] = useState('');
 
-    const playersElements = props.players.map( player => {
+    const filteredPlayers = props.players.filter( player => {
+        return player.name.toLowerCase().includes(filterValue, 0)
+    })
+
+    const playersElements = filteredPlayers.map( player => {
         return <Player
             key={player.id}
             id={player.id}
@@ -23,8 +29,13 @@ const Players = (props) => {
         }
     }
 
+    const changeFilter = (event) => {
+        changeFilterValue(event.currentTarget.value);
+    }
+
     return (
         <>
+            <input value={filterValue} onChange={changeFilter} placeholder={'name'} />
             { playersElements }
             <button onClick={toggleForm}>{'Add player'}</button>
             { isFormDisplayed
@@ -40,6 +51,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const PlayersContainer = connect(mapStateToProps, {addPlayer})(Players);
-
-export default PlayersContainer;
+export default compose(
+    connect(mapStateToProps, {addPlayer})
+)(Players);
