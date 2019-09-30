@@ -6,7 +6,7 @@ export const requiredField = (value) => {
 }
 
 export const numberField = (value) => {
-    if (!value.match(/^\d+$/)) {
+    if (value && !value.match(/^\d+$/)) {
         return 'Value should be a number';
     }
     return undefined;

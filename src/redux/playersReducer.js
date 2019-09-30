@@ -17,7 +17,7 @@ const initialState = {
         {id: 9, name: 'Daniella Floyd', rating: 180, selected: false},
         {id: 10, name: 'Jack Brady', rating: 190, selected: false}
     ],
-    selectedPlayersId: []
+    selectedPlayers: []
 }
 
 const playersReducer = (state = initialState, action) => {
@@ -44,12 +44,12 @@ const playersReducer = (state = initialState, action) => {
         case ADD_PLAYER_TO_SELECTION:
             return {
                 ...state,
-                selectedPlayersId: [...state.selectedPlayersId, action.player]
+                selectedPlayers: [...state.selectedPlayers, action.player]
             }
         case REMOVE_PLAYER_FROM_SELECTION:
             return {
                 ...state,
-                selectedPlayersId: state.selectedPlayersId.filter( player => {
+                selectedPlayers: state.selectedPlayers.filter( player => {
                     return player.id !== action.player.id
                 })
             }
@@ -62,7 +62,7 @@ const playersReducer = (state = initialState, action) => {
                         selected: false
                     }
                 }),
-                selectedPlayersId: [],
+                selectedPlayers: [],
             }
         default: return state;
     }

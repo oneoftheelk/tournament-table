@@ -14,7 +14,7 @@ const Player = (props) => {
         if (selected) {
             props.removePlayerFromSelection(player);
             props.togglePlayerSelection(id);
-        } else if (props.selectedPlayersId.length < 8) {
+        } else if (props.selectedPlayers.length < 8) {
             props.addPlayerToSelection(player);
             props.togglePlayerSelection(id);
         } else {
@@ -31,7 +31,7 @@ const Player = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        selectedPlayersId: state.players.selectedPlayersId
+        selectedPlayers: state.players.selectedPlayers
     }
 }
 

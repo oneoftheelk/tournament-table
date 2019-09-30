@@ -36,8 +36,8 @@ const Players = (props) => {
     }
 
     const formTable = () => {
-        if (props.selectedPlayersId.length === 8) {
-            const playersForTable = props.selectedPlayersId
+        if (props.selectedPlayers.length === 8) {
+            const playersForTable = props.selectedPlayers
                 .map( player => player )
                 .sort( (player1, player2) => {
                     return player1.rating < player2.rating ? 1 : -1
@@ -67,7 +67,7 @@ const Players = (props) => {
 const mapStateToProps = (state) => {
     return {
         players: state.players.players,
-        selectedPlayersId: state.players.selectedPlayersId
+        selectedPlayers: state.players.selectedPlayers
     }
 }
 
