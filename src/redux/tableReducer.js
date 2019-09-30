@@ -1,5 +1,10 @@
 const FORM_TABLE = 'tournament-table/tableReducer/FORM_TABLE';
-const ADD_QUARTERFINAL_RESULT = 'tournament-table/tableReducer/ADD_QUARTERFINAL_RESULT';
+const ADD_QUARTERFINALS_RESULT = 'tournament-table/tableReducer/ADD_QUARTERFINALS_RESULT';
+const ADD_SEMIFINALS_RESULT = 'tournament-table/tableReducer/ADD_SEMIFINALS_RESULT';
+const ADD_FINALS_RESULT = 'tournament-table/tableReducer/ADD_FINALS_RESULT';
+const FILL_QUARTERFINALS_SCORE = 'tournament-table/tableReducer/FILL_QUARTERFINALS_SCORE';
+const FILL_SEMIFINALS_SCORE = 'tournament-table/tableReducer/FILL_SEMIFINALS_SCORE';
+const FILL_FINALS_SCORE = 'tournament-table/tableReducer/FILL_FINALS_SCORE';
 
 const initialState = {
     matchesQuarterfinals: [
@@ -13,13 +18,13 @@ const initialState = {
             firstPlayerScore: 0, secondPlayerScore: 0}
     ],
     matchesSemifinals: [
-        {id: 1, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 5, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
             firstPlayerScore: 0, secondPlayerScore: 0},
-        {id: 2, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 6, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
             firstPlayerScore: 0, secondPlayerScore: 0}
     ],
     matchesFinals: [
-        {id: 1, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 7, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
             firstPlayerScore: 0, secondPlayerScore: 0}
     ]
 }
@@ -40,11 +45,11 @@ const tableReducer = (state = initialState, action) => {
                         firstPlayerScore: 0, secondPlayerScore: 0}
                 ]
             }
-        case ADD_QUARTERFINAL_RESULT:
+        case ADD_QUARTERFINALS_RESULT:
             return {
                 ...state,
                 matchesSemifinals: state.matchesSemifinals.map( match => {
-                    if (match.id === 1 && (action.id === 1 || action.id === 2)) {
+                    if (match.id === 5 && (action.id === 1 || action.id === 2)) {
                         if (action.position === 'top') {
                             return {
                                 ...match,
@@ -57,7 +62,7 @@ const tableReducer = (state = initialState, action) => {
                             }
                         };
                     }
-                    if (match.id === 2 && (action.id === 3 || action.id === 4)) {
+                    if (match.id === 6 && (action.id === 3 || action.id === 4)) {
                         if (action.position === 'top') {
                             return {
                                 ...match,
@@ -73,11 +78,79 @@ const tableReducer = (state = initialState, action) => {
                     return match;
                 })
             }
+        case ADD_SEMIFINALS_RESULT:
+            return {
+                ...state,
+                matchesFinals: state.matchesFinals.map(match => {
+                    if (action.position === 'top') {
+                        return {
+                            ...match,
+                            firstPlayer: { ...action.player }
+                        }
+                    } else {
+                        return {
+                            ...match,
+                            secondPlayer: { ...action.player }
+                        }
+                    };
+                })
+            }
+        case FILL_QUARTERFINALS_SCORE:
+            return {
+                ...state,
+                matchesQuarterfinals: state.matchesQuarterfinals.map (match => {
+                    if(match.id === action.id) {
+                        return {
+                            ...match,
+                            firstPlayerScore: action.firstPlayerScore,
+                            secondPlayerScore: action.secondPlayerScore
+                        }
+                    }
+                    return match;
+                })
+            }
+        case FILL_SEMIFINALS_SCORE:
+            return {
+                ...state,
+                matchesSemifinals: state.matchesSemifinals.map(match => {
+                    if (match.id === action.id) {
+                        return {
+                            ...match,
+                            firstPlayerScore: action.firstPlayerScore,
+                            secondPlayerScore: action.secondPlayerScore
+                        }
+                    }
+                    return match;
+                })
+            }
+        case FILL_FINALS_SCORE:
+            return {
+                ...state,
+                matchesFinals: state.matchesFinals.map(match => {
+                    return {
+                        ...match,
+                        firstPlayerScore: action.firstPlayerScore,
+                        secondPlayerScore: action.secondPlayerScore
+                    }
+                })
+            }
         default: return state;
     }
 }
 
-export const formTable = (players) => ({ type: FORM_TABLE, players });
-export const addQuarterfinalResult = (id, player, position) => ({ type: ADD_QUARTERFINAL_RESULT, id, player, position });
+export const formTable = (players) => (
+    { type: FORM_TABLE, players });
+export const addQuarterfinalsResult = (id, player, position) => (
+    { type: ADD_QUARTERFINALS_RESULT, id, player, position });
+export const addSemifinalsResult = (id, player, position) => (
+    { type: ADD_SEMIFINALS_RESULT, id, player, position });
+export const addFinalsResult = (id, player, position) => (
+    { type: ADD_FINALS_RESULT, id, player, position });
+export const fillQuarterfinalsScore = (id, firstPlayerScore, secondPlayerScore) => (
+    { type: FILL_QUARTERFINALS_SCORE, id, firstPlayerScore, secondPlayerScore });
+export const fillSemifinalsScore = (id, firstPlayerScore, secondPlayerScore) => (
+    { type: FILL_SEMIFINALS_SCORE, id, firstPlayerScore, secondPlayerScore });
+export const fillFinalsScore = (id, firstPlayerScore, secondPlayerScore) => (
+    { type: FILL_FINALS_SCORE, id, firstPlayerScore, secondPlayerScore });
 
 export default tableReducer;

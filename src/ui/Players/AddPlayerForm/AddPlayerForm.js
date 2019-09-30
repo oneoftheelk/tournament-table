@@ -26,7 +26,7 @@ const AddPlayerFormContainer = (props) => {
             rating: +FormData.rating
         };
         props.addPlayer(newPlayer);
-        props.clearNewPlayerForm();
+        props.clearForm();
     }
 
     return (

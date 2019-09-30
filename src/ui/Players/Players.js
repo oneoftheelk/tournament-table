@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { addPlayer, removeAllPlayersFromSelection } from '../../redux/playersReducer';
 import { formTable } from './../../redux/tableReducer';
-import { clearNewPlayerForm } from './../../redux/store';
+import { clearForm } from './../../redux/store';
 import Player from './Player/Player';
 import AddPlayerForm from './AddPlayerForm/AddPlayerForm';
 
@@ -58,7 +58,7 @@ const Players = (props) => {
             { isFormDisplayed
                 && <AddPlayerForm toggleAddPlayerForm={toggleAddPlayerForm}
                     addPlayer={props.addPlayer}
-                    clearNewPlayerForm={props.clearNewPlayerForm} /> }
+                    clearForm={props.clearForm} /> }
             <button onClick={formTable}>Form a table</button>
         </>
     )
@@ -73,5 +73,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps,
-        {addPlayer, formTable, removeAllPlayersFromSelection, clearNewPlayerForm}
+        {addPlayer, formTable, removeAllPlayersFromSelection, clearForm}
 ))(Players);

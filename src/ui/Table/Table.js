@@ -2,20 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import style from './Table.module.scss';
-import { addQuarterfinalResult } from './../../redux/tableReducer';
+import { addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
+    fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore } from './../../redux/tableReducer';
+import { clearForm } from './../../redux/store';
 import Match from './Match/Match';
 
 const Table = (props) => {
 	const matchesQuarterfinals = props.matchesQuarterfinals.map( match => {
-		return <Match key={match.id} match={match} addQuarterfinalResult={props.addQuarterfinalResult} />
+        return <Match key={match.id} match={match} {...props} />
     });
     
     const matchesSemifinals = props.matchesSemifinals.map( match => {
-		return <Match key={match.id} match={match} addQuarterfinalResult={props.addQuarterfinalResult} />
+        return <Match key={match.id} match={match} {...props} />
     });
     
     const matchesFinals = props.matchesFinals.map( match => {
-		return <Match key={match.id} match={match} addQuarterfinalResult={props.addQuarterfinalResult} />
+        return <Match key={match.id} match={match} {...props} />
 	});
 
 	return (
@@ -42,5 +44,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {addQuarterfinalResult})
+    connect(mapStateToProps,
+        {addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
+            fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore, clearForm})
 )(Table);

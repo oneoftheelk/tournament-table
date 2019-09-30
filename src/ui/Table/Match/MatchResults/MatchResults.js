@@ -4,17 +4,6 @@ import { numberField } from '../../../../utils/validators/validators';
 import { Input } from '../../../common/FormControls/FormsControls';
 
 const MatchResults = (props) => {
-    const {id, firstPlayer, secondPlayer} = props;
-
-    const addQuarterfinalResult = (formData) => {
-        debugger
-        const position = (id === 1 || id === 3) ? 'top' : 'bottom';
-        const player = 2 > 1
-            ? { name: firstPlayer.name }
-            : { name: secondPlayer.name };
-        props.addQuarterfinalResult(id, player, position);
-    }
-
 	return (
 		<form onSubmit={props.handleSubmit}>
             <div>
@@ -25,11 +14,38 @@ const MatchResults = (props) => {
                 <span>Player 2 score: </span>
                 <Field component={Input} name={'secondPlayerScore'} validate={[numberField]} />
             </div>
-            <button onClick={addQuarterfinalResult}>Apply</button>
+            <button>Apply</button>
 		</form>
 	);
 }
 
 const MatchResultsReduxForm = reduxForm({ form: 'matchResults' })(MatchResults);
 
-export default MatchResultsReduxForm;
+const MatchResultsContainer = (props) => {
+    const {id, firstPlayer, secondPlayer} = props.match;
+
+    const addResult = (formData) => {
+        debugger
+        const position = (id % 2 === 0) ? 'bottom' : 'top';
+        const player = formData.firstPlayerScore > formData.secondPlayerScore
+            ? { name: firstPlayer.name }
+            : { name: secondPlayer.name };
+        if (id <= 4) {
+            props.addQuarterfinalsResult(id, player, position);
+            props.fillQuarterfinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
+        } else if (id === 5 || id === 6) {
+            props.addSemifinalsResult(id, player, position);
+            props.fillSemifinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
+        } else if (id === 7) {
+            props.addFinalsResult(id, player, position);
+            props.fillFinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
+        }
+        props.clearForm();
+    }
+
+    return (
+        <MatchResultsReduxForm onSubmit={addResult} />
+    )
+}
+
+export default MatchResultsContainer;
