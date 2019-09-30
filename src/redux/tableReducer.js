@@ -43,6 +43,16 @@ const tableReducer = (state = initialState, action) => {
                         firstPlayerScore: 0, secondPlayerScore: 0},
                     {id: 4, firstPlayer: action.players[1], secondPlayer: action.players[6],
                         firstPlayerScore: 0, secondPlayerScore: 0}
+                ],
+                matchesSemifinals: [
+                    {id: 5, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+                        firstPlayerScore: 0, secondPlayerScore: 0},
+                    {id: 6, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+                        firstPlayerScore: 0, secondPlayerScore: 0}
+                ],
+                matchesFinals: [
+                    {id: 7, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+                        firstPlayerScore: 0, secondPlayerScore: 0}
                 ]
             }
         case ADD_QUARTERFINALS_RESULT:
