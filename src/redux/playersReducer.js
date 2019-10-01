@@ -3,6 +3,7 @@ const SELECT_PLAYER = 'tournament-table/playersReducer/SELECT_PLAYER';
 const ADD_PLAYER_TO_SELECTION = 'tournament-table/playersReducer/ADD_PLAYER_TO_SELECTION';
 const REMOVE_PLAYER_FROM_SELECTION = 'tournament-table/playersReducer/REMOVE_PLAYER_FROM_SELECTION';
 const REMOVE_ALL_PLAYERS_FROM_SELECTION = 'tournament-table/playersReducer/REMOVE_ALL_PLAYERS_FROM_SELECTION';
+const APPLY_FINAL_RATING = 'tournament-table/playersReducer/APPLY_FINAL_RATING';
 
 const initialState = {
     players: [
@@ -64,6 +65,18 @@ const playersReducer = (state = initialState, action) => {
                 }),
                 selectedPlayers: [],
             }
+        case APPLY_FINAL_RATING:
+            debugger
+            return {
+                ...state,
+                players: state.players.map(player => {
+                    action.increment.forEach( () => {
+                        if (player.id === action.increment.id) {
+                            debugger
+                        }
+                    })
+                })
+            }
         default: return state;
     }
 }
@@ -73,5 +86,6 @@ export const togglePlayerSelection = (id) => ({ type: SELECT_PLAYER, id });
 export const addPlayerToSelection = (player) => ({ type: ADD_PLAYER_TO_SELECTION, player });
 export const removePlayerFromSelection = (player) => ({ type: REMOVE_PLAYER_FROM_SELECTION, player });
 export const removeAllPlayersFromSelection = () => ({ type: REMOVE_ALL_PLAYERS_FROM_SELECTION });
+export const applyFinalRating = (increment) => ({ type: APPLY_FINAL_RATING, increment });
 
 export default playersReducer;

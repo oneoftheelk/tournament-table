@@ -37,6 +37,9 @@ export const MatchResultsContainer = React.memo((props) => {
         const player = firstPlayerScore > secondPlayerScore
             ? { name: firstPlayer.name }
             : { name: secondPlayer.name };
+
+        props.changeRating(firstPlayer.id, secondPlayer.id, firstPlayer.rating + 150, secondPlayer.rating - 150);
+
         if (id <= 4) {
             props.addQuarterfinalsResult(id, player, position);
             props.fillQuarterfinalsScore(id, firstPlayerScore, secondPlayerScore);
@@ -46,7 +49,9 @@ export const MatchResultsContainer = React.memo((props) => {
         } else if (id === 7) {
             props.addFinalsResult(id, player, position);
             props.fillFinalsScore(id, firstPlayerScore, secondPlayerScore);
+            props.applyFinalRating(props.ratingIncrement);
         }
+        
         props.clearForm();
         props.closeForm();
     }

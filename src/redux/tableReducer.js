@@ -5,6 +5,7 @@ const ADD_FINALS_RESULT = 'tournament-table/tableReducer/ADD_FINALS_RESULT';
 const FILL_QUARTERFINALS_SCORE = 'tournament-table/tableReducer/FILL_QUARTERFINALS_SCORE';
 const FILL_SEMIFINALS_SCORE = 'tournament-table/tableReducer/FILL_SEMIFINALS_SCORE';
 const FILL_FINALS_SCORE = 'tournament-table/tableReducer/FILL_FINALS_SCORE';
+const CHANGE_RATING = 'tournament-table/tableReducer/CHANGE_RATING';
 
 const initialState = {
     matchesQuarterfinals: [
@@ -26,6 +27,16 @@ const initialState = {
     matchesFinals: [
         {id: 7, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
             firstPlayerScore: 0, secondPlayerScore: 0}
+    ],
+    ratingIncrement: [
+        {id: 1, increment: 0},
+        {id: 2, increment: 0},
+        {id: 3, increment: 0},
+        {id: 4, increment: 0},
+        {id: 5, increment: 0},
+        {id: 6, increment: 0},
+        {id: 7, increment: 0},
+        {id: 8, increment: 0},
     ]
 }
 
@@ -144,6 +155,27 @@ const tableReducer = (state = initialState, action) => {
                     }
                 })
             }
+        case CHANGE_RATING:
+            console.log(action)
+            debugger
+            return {
+                ...state,
+                ratingIncrement: state.ratingIncrement.map( player => {
+                    if (player.id === action.id1) {
+                        return {
+                            ...player,
+                            increment: action.firstPlayer
+                        }
+                    } else if (player.id === action.id2) {
+                        return {
+                            ...player,
+                            increment: action.secondPlayer
+                        }
+                    } else {
+                        return player
+                    }
+                })
+            }
         default: return state;
     }
 }
@@ -162,5 +194,7 @@ export const fillSemifinalsScore = (id, firstPlayerScore, secondPlayerScore) => 
     { type: FILL_SEMIFINALS_SCORE, id, firstPlayerScore, secondPlayerScore });
 export const fillFinalsScore = (id, firstPlayerScore, secondPlayerScore) => (
     { type: FILL_FINALS_SCORE, id, firstPlayerScore, secondPlayerScore });
+export const changeRating = (id1, id2, firstPlayer, secondPlayer) => (
+    { type: CHANGE_RATING, id1, id2, firstPlayer, secondPlayer });
 
 export default tableReducer;

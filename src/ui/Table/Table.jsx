@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import style from './Table.module.scss';
 import { addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
-    fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore } from '../../redux/tableReducer';
+    fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore, changeRating } from '../../redux/tableReducer';
+import { applyFinalRating } from '../../redux/playersReducer';
 import { clearForm } from '../../redux/store';
 import { Match } from './Match/Match';
 
@@ -39,12 +40,14 @@ const mapStateToProps = (state) => {
     return {
         matchesQuarterfinals: state.table.matchesQuarterfinals,
         matchesSemifinals: state.table.matchesSemifinals,
-        matchesFinals: state.table.matchesFinals
+        matchesFinals: state.table.matchesFinals,
+        ratingIncrement: state.table.ratingIncrement
     }
 }
 
 export const ComposedTable = compose(
     connect(mapStateToProps,
         {addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
-            fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore, clearForm})
+            fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore,
+            clearForm, changeRating, applyFinalRating})
 )(Table);
