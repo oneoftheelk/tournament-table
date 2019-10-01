@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Input } from './../../common/FormControls/FormsControls';
+import { Input } from '../../common/FormControls/FormsControls';
 import { requiredField, numberField, stringWithSpacesField } from '../../../utils/validators/validators';
 
 const AddPlayerForm = React.memo((props) => {
@@ -18,7 +18,7 @@ const AddPlayerForm = React.memo((props) => {
 
 const AddPlayerReduxForm = reduxForm({ form: 'addPlayer' })(AddPlayerForm);
 
-const AddPlayerFormContainer = React.memo((props) => {
+export const AddPlayerFormContainer = React.memo((props) => {
     const addPlayer = (FormData) => {
         const newPlayer = {
             id: Math.random().toFixed(5),
@@ -33,5 +33,3 @@ const AddPlayerFormContainer = React.memo((props) => {
         <AddPlayerReduxForm onSubmit={addPlayer} toggleAddPlayerForm={props.toggleAddPlayerForm} />
     )
 });
-
-export default AddPlayerFormContainer;

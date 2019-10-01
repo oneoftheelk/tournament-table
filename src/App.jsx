@@ -2,19 +2,17 @@ import React from 'react';
 import style from './App.module.scss';
 // import routes from './routes';
 // import Navigation from './ui/Navigation/Navigation';
-import Players from './ui/Players/Players';
-import Table from './ui/Table/Table';
+import { ComposedPlayers } from './ui/Players/Players';
+import { ComposedTable } from './ui/Table/Table';
 
-const App = React.memo(() => {
+export const App = React.memo(() => {
 	return (
 		<div className={style.app}>
             <div>
                 {/* <Navigation routes={routes.filter(route => route.isNavBar)} /> */}
-                <Players />
+                <ComposedPlayers />
             </div>
-            <Table />
+            <ComposedTable />
 		</div>
 	);
 });
-
-export default App;

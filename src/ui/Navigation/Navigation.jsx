@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Navigation = (props) => {
+export const Navigation = (props) => {
     return (
         <header>
             { props.routes.map( route => {
@@ -12,6 +12,4 @@ const Navigation = (props) => {
             })}
         </header>
     )
-}
-
-export default Navigation;
+};

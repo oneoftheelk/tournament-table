@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import style from './Table.module.scss';
 import { addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
-    fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore } from './../../redux/tableReducer';
-import { clearForm } from './../../redux/store';
-import Match from './Match/Match';
+    fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore } from '../../redux/tableReducer';
+import { clearForm } from '../../redux/store';
+import { Match } from './Match/Match';
 
 const Table = React.memo((props) => {
 	const matchesQuarterfinals = props.matchesQuarterfinals.map( match => {
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default compose(
+export const ComposedTable = compose(
     connect(mapStateToProps,
         {addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
             fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore, clearForm})

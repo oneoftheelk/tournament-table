@@ -22,7 +22,7 @@ const MatchResults = React.memo((props) => {
 
 const MatchResultsReduxForm = reduxForm({ form: 'matchResults' })(MatchResults);
 
-const MatchResultsContainer = React.memo((props) => {
+export const MatchResultsContainer = React.memo((props) => {
     const {id, firstPlayer, secondPlayer} = props.match;
 
     const addResult = (formData) => {
@@ -48,5 +48,3 @@ const MatchResultsContainer = React.memo((props) => {
         <MatchResultsReduxForm onSubmit={addResult} closeForm={props.closeForm} />
     )
 });
-
-export default MatchResultsContainer;

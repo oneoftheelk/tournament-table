@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { addPlayer, removeAllPlayersFromSelection } from '../../redux/playersReducer';
-import { formTable } from './../../redux/tableReducer';
-import { clearForm } from './../../redux/store';
+import { formTable } from '../../redux/tableReducer';
+import { clearForm } from '../../redux/store';
 import style from './Players.module.scss';
 import Player from './Player/Player';
-import AddPlayerForm from './AddPlayerForm/AddPlayerForm';
-import Filter from './../common/Filter/Filter';
+import { AddPlayerFormContainer } from './AddPlayerForm/AddPlayerForm';
+import { Filter } from '../common/Filter/Filter';
 
 const Players = React.memo((props) => {
     return (
@@ -65,7 +65,7 @@ const PlayersContainer = React.memo((props) => {
             <Players playersElements={playersElements}/>
             <button onClick={toggleAddPlayerForm}>{'Add player'}</button>
             { isFormDisplayed
-                && <AddPlayerForm toggleAddPlayerForm={toggleAddPlayerForm}
+                && <AddPlayerFormContainer toggleAddPlayerForm={toggleAddPlayerForm}
                     addPlayer={props.addPlayer}
                     clearForm={props.clearForm} /> }
             <button onClick={formTable}>Form a table</button>
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default compose(
+export const ComposedPlayers = compose(
     connect(mapStateToProps,
         {addPlayer, formTable, removeAllPlayersFromSelection, clearForm}
 ))(PlayersContainer);

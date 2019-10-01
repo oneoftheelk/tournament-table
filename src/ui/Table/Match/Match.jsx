@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import style from './Match.module.scss';
-import MatchResultsContainer from './MatchResults/MatchResults';
+import { MatchResultsContainer } from './MatchResults/MatchResults';
 
-const Match = React.memo((props) => {
+export const Match = React.memo((props) => {
 	const { firstPlayer, secondPlayer, firstPlayerScore, secondPlayerScore } = props.match;
 	const [showResultsForm, toggleResultForm] = useState(false);
 
@@ -19,5 +19,3 @@ const Match = React.memo((props) => {
 		</div>
 	);
 });
-
-export default Match;
