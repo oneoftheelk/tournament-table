@@ -26,19 +26,26 @@ export const MatchResultsContainer = React.memo((props) => {
     const {id, firstPlayer, secondPlayer} = props.match;
 
     const addResult = (formData) => {
+        const {firstPlayerScore = 0, secondPlayerScore = 0} = formData;
+
+        if (!(firstPlayerScore === '3' && secondPlayerScore < firstPlayerScore
+            || secondPlayerScore === '3' && firstPlayerScore < secondPlayerScore)) {
+            return alert('dsad');
+        }
+
         const position = (id % 2 === 0) ? 'bottom' : 'top';
-        const player = formData.firstPlayerScore > formData.secondPlayerScore
+        const player = firstPlayerScore > secondPlayerScore
             ? { name: firstPlayer.name }
             : { name: secondPlayer.name };
         if (id <= 4) {
             props.addQuarterfinalsResult(id, player, position);
-            props.fillQuarterfinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
+            props.fillQuarterfinalsScore(id, firstPlayerScore, secondPlayerScore);
         } else if (id === 5 || id === 6) {
             props.addSemifinalsResult(id, player, position);
-            props.fillSemifinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
+            props.fillSemifinalsScore(id, firstPlayerScore, secondPlayerScore);
         } else if (id === 7) {
             props.addFinalsResult(id, player, position);
-            props.fillFinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
+            props.fillFinalsScore(id, firstPlayerScore, secondPlayerScore);
         }
         props.clearForm();
         props.closeForm();
