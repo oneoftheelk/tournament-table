@@ -4,10 +4,20 @@ import { compose } from 'redux';
 import { addPlayer, removeAllPlayersFromSelection } from '../../redux/playersReducer';
 import { formTable } from './../../redux/tableReducer';
 import { clearForm } from './../../redux/store';
+import style from './Players.module.scss';
 import Player from './Player/Player';
 import AddPlayerForm from './AddPlayerForm/AddPlayerForm';
+import Filter from './../common/Filter/Filter';
 
-const Players = (props) => {
+const Players = React.memo((props) => {
+    return (
+        <div className={style.players}>
+            {props.playersElements}
+        </div>
+    )
+});
+
+const PlayersContainer = React.memo((props) => {
     const [isFormDisplayed, toggleFormDisplay] = useState(false);
     const [filterValue, changeFilterValue] = useState('');
 
@@ -51,9 +61,8 @@ const Players = (props) => {
 
     return (
         <>
-            <input value={filterValue} onChange={changeFilter} placeholder={'name'} />
-            <button onClick={clearFilter}>{'Clear filter'}</button>
-            { playersElements }
+            <Filter filterValue={filterValue} changeFilter={changeFilter} clearFilter={clearFilter} />
+            <Players playersElements={playersElements}/>
             <button onClick={toggleAddPlayerForm}>{'Add player'}</button>
             { isFormDisplayed
                 && <AddPlayerForm toggleAddPlayerForm={toggleAddPlayerForm}
@@ -62,7 +71,7 @@ const Players = (props) => {
             <button onClick={formTable}>Form a table</button>
         </>
     )
-}
+});
 
 const mapStateToProps = (state) => {
     return {
@@ -74,4 +83,4 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps,
         {addPlayer, formTable, removeAllPlayersFromSelection, clearForm}
-))(Players);
+))(PlayersContainer);

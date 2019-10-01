@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { numberField } from '../../../../utils/validators/validators';
 import { Input } from '../../../common/FormControls/FormsControls';
 
-const MatchResults = (props) => {
+const MatchResults = React.memo((props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
             <div>
@@ -15,17 +15,17 @@ const MatchResults = (props) => {
                 <Field component={Input} name={'secondPlayerScore'} validate={[numberField]} />
             </div>
             <button>Apply</button>
+            <button onClick={props.closeForm}>Close</button>
 		</form>
-	);
-}
+	)
+});
 
 const MatchResultsReduxForm = reduxForm({ form: 'matchResults' })(MatchResults);
 
-const MatchResultsContainer = (props) => {
+const MatchResultsContainer = React.memo((props) => {
     const {id, firstPlayer, secondPlayer} = props.match;
 
     const addResult = (formData) => {
-        debugger
         const position = (id % 2 === 0) ? 'bottom' : 'top';
         const player = formData.firstPlayerScore > formData.secondPlayerScore
             ? { name: firstPlayer.name }
@@ -41,11 +41,12 @@ const MatchResultsContainer = (props) => {
             props.fillFinalsScore(id, formData.firstPlayerScore, formData.secondPlayerScore);
         }
         props.clearForm();
+        props.closeForm();
     }
 
     return (
-        <MatchResultsReduxForm onSubmit={addResult} />
+        <MatchResultsReduxForm onSubmit={addResult} closeForm={props.closeForm} />
     )
-}
+});
 
 export default MatchResultsContainer;

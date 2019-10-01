@@ -4,22 +4,12 @@ import { compose } from 'redux';
 import { togglePlayerSelection, addPlayerToSelection, removePlayerFromSelection } from '../../../redux/playersReducer';
 import style from './Player.module.scss';
 
-const Player = (props) => {
-    const {id, name, rating, selected} = props.player;
-    const classForSelected = selected ? style.selected : '';
+const Player = React.memo((props) => {
+    const {id, name, rating, classForSelected} = props;
 
     const togglePlayerSelection = () => {
         const player = {id, name, rating};
-
-        if (selected) {
-            props.removePlayerFromSelection(player);
-            props.togglePlayerSelection(id);
-        } else if (props.selectedPlayers.length < 8) {
-            props.addPlayerToSelection(player);
-            props.togglePlayerSelection(id);
-        } else {
-            console.log('You cant add more than 8 players');
-        }
+        props.togglePlayerSelection(player)
     }
 
     return (
@@ -27,7 +17,29 @@ const Player = (props) => {
             <span className={classForSelected}>{`${id} - ${name} (${rating})`}</span>
         </div>
     )
-}
+});
+
+const PlayerContainer = (props) => {
+    const {id, name, rating, selected} = props.player;
+    const classForSelected = selected ? style.selected : '';
+
+    const togglePlayerSelection = (player) => {
+        if (selected) {
+            props.removePlayerFromSelection(player);
+            props.togglePlayerSelection(player.id);
+        } else if (props.selectedPlayers.length < 8) {
+            props.addPlayerToSelection(player);
+            props.togglePlayerSelection(player.id);
+        } else {
+            console.log('You cant add more than 8 players');
+        }
+    }
+
+    return (
+        <Player id={id} name={name} rating={rating} classForSelected={classForSelected}
+            togglePlayerSelection={togglePlayerSelection}/>
+    )
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -38,4 +50,4 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps,
         {togglePlayerSelection, addPlayerToSelection, removePlayerFromSelection})
-)(Player);
+)(PlayerContainer);

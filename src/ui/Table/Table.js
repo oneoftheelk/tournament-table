@@ -7,7 +7,7 @@ import { addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
 import { clearForm } from './../../redux/store';
 import Match from './Match/Match';
 
-const Table = (props) => {
+const Table = React.memo((props) => {
 	const matchesQuarterfinals = props.matchesQuarterfinals.map( match => {
         return <Match key={match.id} match={match} {...props} />
     });
@@ -33,7 +33,7 @@ const Table = (props) => {
             </div>
         </div>
 	);
-}
+});
 
 const mapStateToProps = (state) => {
     return {
