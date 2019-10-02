@@ -9,23 +9,23 @@ const CHANGE_RATING = 'tournament-table/tableReducer/CHANGE_RATING';
 
 const initialState = {
     matchesQuarterfinals: [
-        {id: 1, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 1, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0},
-        {id: 2, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 2, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0},
-        {id: 3, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 3, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0},
-        {id: 4, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 4, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0}
     ],
     matchesSemifinals: [
-        {id: 5, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 5, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0},
-        {id: 6, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 6, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0}
     ],
     matchesFinals: [
-        {id: 7, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+        {id: 7, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0}
     ],
     ratingIncrement: [
@@ -56,13 +56,13 @@ const tableReducer = (state = initialState, action) => {
                         firstPlayerScore: 0, secondPlayerScore: 0}
                 ],
                 matchesSemifinals: [
-                    {id: 5, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+                    {id: 5, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
                         firstPlayerScore: 0, secondPlayerScore: 0},
-                    {id: 6, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+                    {id: 6, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
                         firstPlayerScore: 0, secondPlayerScore: 0}
                 ],
                 matchesFinals: [
-                    {id: 7, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
+                    {id: 7, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
                         firstPlayerScore: 0, secondPlayerScore: 0}
                 ],
                 ratingIncrement: action.selectedIds

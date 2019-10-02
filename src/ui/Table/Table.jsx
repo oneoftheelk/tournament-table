@@ -9,17 +9,15 @@ import { clearForm } from '../../redux/store';
 import { Match } from './Match/Match';
 
 const Table = React.memo((props) => {
-	const matchesQuarterfinals = props.matchesQuarterfinals.map( match => {
-        return <Match key={match.id} match={match} {...props} />
-    });
-    
-    const matchesSemifinals = props.matchesSemifinals.map( match => {
-        return <Match key={match.id} match={match} {...props} />
-    });
-    
-    const matchesFinals = props.matchesFinals.map( match => {
-        return <Match key={match.id} match={match} {...props} />
-	});
+    const matches = (matches) => {
+        return matches.map( match => {
+            return <Match key={match.id} match={match} {...props} />
+        })
+    }
+
+    const matchesQuarterfinals = matches(props.matchesQuarterfinals);
+    const matchesSemifinals = matches(props.matchesSemifinals);
+    const matchesFinals = matches(props.matchesFinals);
 
 	return (
         <>
