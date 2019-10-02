@@ -18,7 +18,6 @@ const Players = React.memo((props) => {
 });
 
 const PlayersContainer = React.memo((props) => {
-    debugger
     const [isFormDisplayed, toggleFormDisplay] = useState(false);
     const [filterValue, changeFilterValue] = useState('');
 
