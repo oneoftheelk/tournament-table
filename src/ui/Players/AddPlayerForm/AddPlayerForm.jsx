@@ -1,17 +1,22 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Input } from '../../common/FormControls/FormsControls';
+import style from './AddPlayerForm.module.scss';
 import { requiredField, numberField, stringWithSpacesField } from '../../../utils/validators/validators';
+import { FormControlComponent } from '../../common/FormControls/FormsControls';
+import Button from 'react-bootstrap/Button';
 
 const AddPlayerForm = React.memo((props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <Field component={Input} name={'name'} placeholder={'name'}
+        <form onSubmit={props.handleSubmit} className={style.formContainer}>
+            <Field component={FormControlComponent} name={'name'} placeholder={"Player's name"}
                 validate={[requiredField, stringWithSpacesField]} />
-            <Field component={Input} name={'rating'} placeholder={'rating'}
+            <Field component={FormControlComponent} name={'rating'} placeholder={"Player's rating"}
                 validate={[requiredField, numberField]} />
-            <button>Add</button>
-            <button type='button' onClick={props.toggleAddPlayerForm}>Close</button>
+            <div>
+                <Button variant='outline-success' type='submit'>Add</Button>
+                <Button variant='outline-danger' type='button'
+                    onClick={props.toggleAddPlayerForm}>Close</Button>
+            </div>
         </form>
     )
 });

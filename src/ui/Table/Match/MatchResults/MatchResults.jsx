@@ -1,21 +1,25 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import style from './MatchResults.module.scss';
 import { numberField } from '../../../../utils/validators/validators';
-import { Input } from '../../../common/FormControls/FormsControls';
+import { FormControlComponent } from '../../../common/FormControls/FormsControls';
+import Button from 'react-bootstrap/Button';
 
 const MatchResults = React.memo((props) => {
 	return (
-		<form onSubmit={props.handleSubmit}>
+		<form onSubmit={props.handleSubmit} className={style.formContainer}>
             <div>
                 <span>Player 1 score: </span>
-                <Field component={Input} name={'firstPlayerScore'} validate={[numberField]} />
+                <Field component={FormControlComponent} name={'firstPlayerScore'} validate={[numberField]} />
             </div>
             <div>
                 <span>Player 2 score: </span>
-                <Field component={Input} name={'secondPlayerScore'} validate={[numberField]} />
+                <Field component={FormControlComponent} name={'secondPlayerScore'} validate={[numberField]} />
             </div>
-            <button>Apply</button>
-            <button onClick={props.closeForm}>Close</button>
+            <div>
+                <Button variant='outline-success' type='submit'>Apply</Button>
+                <Button variant='outline-danger' onClick={props.closeForm}>Close</Button>
+            </div>
 		</form>
 	)
 });

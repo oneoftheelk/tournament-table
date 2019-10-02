@@ -1,6 +1,30 @@
-.players {
-    max-height: 30vh;
+.playersContainer {
+    display: flex;
+    flex-direction: column;
 
-    border: 1px solid red;
+    max-width: 300px;
+
+    button {
+        margin-bottom: 10px;
+    }
+}
+
+.title {
+    margin: 20px auto 0;
+}
+
+.players {
+    max-height: 50vh;
+
+    margin: 10px 0;
+
     overflow-y: auto;
+}
+
+.player {
+    padding: 5px 10px !important;
+}
+
+.selected {
+    background-color: grey !important;
 }

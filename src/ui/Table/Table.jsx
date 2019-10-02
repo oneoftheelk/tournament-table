@@ -22,17 +22,20 @@ const Table = React.memo((props) => {
 	});
 
 	return (
-        <div className={style.tableContainer}>
-            <div className={style.matchContainer}>
-                {matchesQuarterfinals}
+        <>
+            <h3 className={style.title}>Tournament table</h3>
+            <div className={style.tableContainer}>
+                <div className={style.matchContainer}>
+                    {matchesQuarterfinals}
+                </div>
+                <div className={style.matchContainer}>
+                    {matchesSemifinals}
+                </div>
+                <div className={style.matchContainer}>
+                    {matchesFinals}
+                </div>
             </div>
-            <div className={style.matchContainer}>
-                {matchesSemifinals}
-            </div>
-            <div className={style.matchContainer}>
-                {matchesFinals}
-            </div>
-        </div>
+        </>
 	);
 });
 
