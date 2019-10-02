@@ -66,17 +66,8 @@ const playersReducer = (state = initialState, action) => {
                 selectedPlayers: [],
             }
         case APPLY_FINAL_RATING:
-            debugger
-            return {
-                ...state,
-                players: state.players.map(player => {
-                    action.increment.forEach( () => {
-                        if (player.id === action.increment.id) {
-                            debugger
-                        }
-                    })
-                })
-            }
+            return state;
+
         default: return state;
     }
 }

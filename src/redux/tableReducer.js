@@ -64,7 +64,8 @@ const tableReducer = (state = initialState, action) => {
                 matchesFinals: [
                     {id: 7, firstPlayer: {name: 'to be announced'}, secondPlayer: {name: 'to be announced'},
                         firstPlayerScore: 0, secondPlayerScore: 0}
-                ]
+                ],
+                ratingIncrement: action.selectedIds
             }
         case ADD_QUARTERFINALS_RESULT:
             return {
@@ -156,8 +157,6 @@ const tableReducer = (state = initialState, action) => {
                 })
             }
         case CHANGE_RATING:
-            console.log(action)
-            debugger
             return {
                 ...state,
                 ratingIncrement: state.ratingIncrement.map( player => {
@@ -180,8 +179,8 @@ const tableReducer = (state = initialState, action) => {
     }
 }
 
-export const formTable = (players) => (
-    { type: FORM_TABLE, players });
+export const formTable = (players, selectedIds) => (
+    { type: FORM_TABLE, players, selectedIds });
 export const addQuarterfinalsResult = (id, player, position) => (
     { type: ADD_QUARTERFINALS_RESULT, id, player, position });
 export const addSemifinalsResult = (id, player, position) => (

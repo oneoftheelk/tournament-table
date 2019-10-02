@@ -34,9 +34,14 @@ export const MatchResultsContainer = React.memo((props) => {
         }
 
         const position = (id % 2 === 0) ? 'bottom' : 'top';
+        
         const player = firstPlayerScore > secondPlayerScore
-            ? { name: firstPlayer.name }
-            : { name: secondPlayer.name };
+            ? { name: firstPlayer.name || 'to be announced',
+                rating: firstPlayer.rating || '0',
+                id: firstPlayer.id || '-1' }
+            : { name: secondPlayer.name || 'to be announced',
+                rating: secondPlayer.rating || '0',
+                id: secondPlayer.id || '-1' }
 
         props.changeRating(firstPlayer.id, secondPlayer.id, firstPlayer.rating + 150, secondPlayer.rating - 150);
 

@@ -18,6 +18,7 @@ const Players = React.memo((props) => {
 });
 
 const PlayersContainer = React.memo((props) => {
+    debugger
     const [isFormDisplayed, toggleFormDisplay] = useState(false);
     const [filterValue, changeFilterValue] = useState('');
 
@@ -52,7 +53,13 @@ const PlayersContainer = React.memo((props) => {
                 .sort( (player1, player2) => {
                     return player1.rating < player2.rating ? 1 : -1
                 });
-            props.formTable(playersForTable);
+
+            const selectedIds = [];
+            playersForTable.forEach( player => {
+                selectedIds.push({id: player.id, increment: 0});
+            })
+
+            props.formTable(playersForTable, selectedIds);
             props.removeAllPlayersFromSelection();
         } else {
             console.log('Please add select exactly 8 players');
