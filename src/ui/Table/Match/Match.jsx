@@ -7,7 +7,8 @@ export const Match = React.memo((props) => {
 	const { firstPlayer, secondPlayer, firstPlayerScore, secondPlayerScore } = props.match;
 
 	const openForm = () => {
-		props.openForm(props.match.id)
+        const needToOpen = !(firstPlayer.name === 'TBA' || secondPlayer.name === 'TBA');
+		props.openForm(props.match.id, needToOpen);
 	}
 
 	const closeForm = () => {

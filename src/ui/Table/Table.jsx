@@ -31,11 +31,13 @@ const TableContainer = (props) => {
     const [showResultsForm, toggleResultForm] = useState(false);
     const [formIsOpenForId, changeId] = useState(null);
     
-	const openForm = (id) => {
-        changeId(id);
-		if(!showResultsForm) {
-			toggleResultForm(true);
-		}
+	const openForm = (id, needToOpen) => {
+        if (props.isTableFormed && needToOpen) {
+            changeId(id);
+            if (!showResultsForm) {
+                toggleResultForm(true);
+            }
+        }
 	}
 
 	const closeForm = () => {
@@ -66,7 +68,8 @@ const mapStateToProps = (state) => {
         matchesQuarterfinals: state.table.matchesQuarterfinals,
         matchesSemifinals: state.table.matchesSemifinals,
         matchesFinals: state.table.matchesFinals,
-        ratingIncrement: state.table.ratingIncrement
+        ratingIncrement: state.table.ratingIncrement,
+        isTableFormed: state.table.isTableFormed
     }
 }
 

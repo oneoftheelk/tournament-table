@@ -8,6 +8,7 @@ const FILL_FINALS_SCORE = 'tournament-table/tableReducer/FILL_FINALS_SCORE';
 const CHANGE_RATING = 'tournament-table/tableReducer/CHANGE_RATING';
 
 const initialState = {
+    isTableFormed: false,
     matchesQuarterfinals: [
         {id: 1, firstPlayer: {name: 'TBA'}, secondPlayer: {name: 'TBA'},
             firstPlayerScore: 0, secondPlayerScore: 0},
@@ -45,6 +46,7 @@ const tableReducer = (state = initialState, action) => {
         case FORM_TABLE:
             return {
                 ...state,
+                isTableFormed: true,
                 matchesQuarterfinals: [
                     {id: 1, firstPlayer: action.players[0], secondPlayer: action.players[7],
                         firstPlayerScore: 0, secondPlayerScore: 0},
@@ -148,6 +150,7 @@ const tableReducer = (state = initialState, action) => {
         case FILL_FINALS_SCORE:
             return {
                 ...state,
+                isTableFormed: false,
                 matchesFinals: state.matchesFinals.map(match => {
                     return {
                         ...match,

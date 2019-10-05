@@ -42,17 +42,18 @@ const PlayersContainer = React.memo((props) => {
 
     }, [show]);
 
-    const overlayed = () => {
+    const tooltip = () => {
         const onEnter = () => {
             setTimeout(() => {
                 setShow(false);
             }, 2000);
         }
+
         return (
             <Overlay target={target.current} show={show} placement="right"
                 onEntered={onEnter}>
                 {props => (
-                    <Tooltip id="overlay-example" {...props}>
+                    <Tooltip {...props}>
                         { tooltipText }
                     </Tooltip>
                 )}
@@ -97,23 +98,28 @@ const PlayersContainer = React.memo((props) => {
     }
 
     const formTable = () => {
-        if (props.selectedPlayers.length === 8) {
-            const playersForTable = props.selectedPlayers
-                .map( player => player )
-                .sort( (player1, player2) => {
-                    return player1.rating < player2.rating ? 1 : -1
-                });
-
-            const selectedIds = [];
-            playersForTable.forEach( player => {
-                selectedIds.push({id: player.id, increment: 0});
-            })
-
-            props.formTable(playersForTable, selectedIds);
-            props.removeAllPlayersFromSelection();
-        } else {
-            changeTooltipText('You should add exactly 8 players');
+        if (props.isTableFormed) {
+            changeTooltipText('Table has already been formed!');
             setShow(true);
+        } else {
+            if (props.selectedPlayers.length === 8) {
+                const playersForTable = props.selectedPlayers
+                    .map( player => player )
+                    .sort( (player1, player2) => {
+                        return player1.rating < player2.rating ? 1 : -1
+                    });
+
+                const selectedIds = [];
+                playersForTable.forEach( player => {
+                    selectedIds.push({id: player.id, increment: 0});
+                })
+
+                props.formTable(playersForTable, selectedIds);
+                props.removeAllPlayersFromSelection();
+            } else {
+                changeTooltipText('You should add exactly 8 players');
+                setShow(true);
+            }
         }
     }
 
@@ -122,16 +128,14 @@ const PlayersContainer = React.memo((props) => {
             <h3 className={style.title}>Select players</h3>
             <Filter filterValue={filterValue} changeFilter={changeFilter} clearFilter={clearFilter} />
             <Players playersElements={playersElements}/>
-            { !isFormDisplayed && (
-                <>
+            { !isFormDisplayed 
+                ? <>
                     <Button variant='outline-success' onClick={toggleAddPlayerForm}>Add new player</Button>
                     <Button variant='outline-success' ref={target} onClick={formTable}>Form a table</Button>
-                </>
-            )}
-            { overlayed() }
-            { isFormDisplayed
-                && <AddPlayerFormContainer toggleAddPlayerForm={toggleAddPlayerForm}
-                    addPlayer={props.addPlayer} clearForm={props.clearForm} /> }
+                 </>
+                 : <AddPlayerFormContainer toggleAddPlayerForm={toggleAddPlayerForm}
+                        addPlayer={props.addPlayer} clearForm={props.clearForm} /> }
+            { tooltip() }
         </div>
     )
 });
@@ -139,7 +143,8 @@ const PlayersContainer = React.memo((props) => {
 const mapStateToProps = (state) => {
     return {
         players: state.players.players,
-        selectedPlayers: state.players.selectedPlayers
+        selectedPlayers: state.players.selectedPlayers,
+        isTableFormed: state.table.isTableFormed
     }
 }
 
