@@ -1,4 +1,8 @@
 .match {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+
+    &:hover {
+        background-color: darken(white, 10%);
+    }
 }

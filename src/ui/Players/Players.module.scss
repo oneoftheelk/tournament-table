@@ -23,8 +23,12 @@
 
 .player {
     padding: 5px 10px !important;
+
+    &:hover {
+        background-color: darken(white, 10%);
+    }
 }
 
 .selected {
-    background-color: grey !important;
+    background-color: darken(white, 20%) !important;
 }
