@@ -44,9 +44,9 @@ const PlayersContainer = React.memo((props) => {
         const classForSelected = player.selected ? style.selected : '';
 
         return (
-            <ListGroup.Item onClick={() => togglePlayerSelection(player)}
+            <ListGroup.Item key={player.id} onClick={() => togglePlayerSelection(player)}
                 className={`${classForSelected} ${style.player}`} >
-                <Player key={player.id} player={player} />
+                <Player player={player} />
             </ListGroup.Item>
         )
     })

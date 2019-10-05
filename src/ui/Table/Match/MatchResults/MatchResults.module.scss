@@ -1,27 +1,24 @@
 .formContainer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     margin: 0 !important;
 }
 
-.results {
-    display: flex !important;
-    align-items: center;
-
-    margin-left: 5px;
-
-    input {
-        width: 30px;
-    }
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     button {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
 
-        margin-left: 5px;
-        padding: 0 !important;
+        margin: 0 5px 5px;
     }
+}
+
+.score {
+    width: 125px !important;
 }

@@ -14,19 +14,27 @@ export const Match = React.memo((props) => {
 		props.closeForm();
 	}
     
-	return (
-		<div className={style.match} onClick={openForm}>
-			<div>
-                <ListGroup.Item className={style.player}>
-                    <div className={style.name}>{firstPlayer.name}</div>
-                    <div className={style.score}>{firstPlayerScore}</div>
-                </ListGroup.Item>
-                <ListGroup.Item className={style.player}>
-                    <div className={style.name}>{secondPlayer.name}</div>
-                    <div className={style.score}>{secondPlayerScore}</div>
-                </ListGroup.Item>
+    return (
+        <div className={style.matchContainer} onClick={openForm}>
+            <div className={style.match}>
+                { props.showResultsForm && props.isFormOpen
+                    ? 
+                        <ListGroup.Item>
+                            <MatchResultsContainer {...props} closeForm={closeForm} />
+                        </ListGroup.Item>
+                    :
+                        <>
+                            <ListGroup.Item className={style.player}>
+                                <div className={style.name}>{firstPlayer.name}</div>
+                                <div className={style.score}>{firstPlayerScore}</div>
+                            </ListGroup.Item>
+                            <ListGroup.Item className={style.player}>
+                                <div className={style.name}>{secondPlayer.name}</div>
+                                <div className={style.score}>{secondPlayerScore}</div>
+                            </ListGroup.Item>
+                        </>
+                }
             </div>
-			{ props.showResultsForm && props.isFormOpen && <MatchResultsContainer {...props} closeForm={closeForm}/> }
-		</div>
-	);
+        </div>
+    );
 });
