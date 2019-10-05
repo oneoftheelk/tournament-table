@@ -66,7 +66,6 @@ const playersReducer = (state = initialState, action) => {
                 selectedPlayers: [],
             }
         case APPLY_FINAL_RATING:
-            // debugger
             return {
                 ...state,
                 players: state.players.map( player => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { addPlayer, removeAllPlayersFromSelection,
@@ -11,6 +11,8 @@ import { AddPlayerFormContainer } from './AddPlayerForm/AddPlayerForm';
 import { Filter } from '../common/Filter/Filter';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Players = React.memo((props) => {
     return (
@@ -21,6 +23,43 @@ const Players = React.memo((props) => {
 });
 
 const PlayersContainer = React.memo((props) => {
+    const [isFormDisplayed, toggleFormDisplay] = useState(false);
+    const [filterValue, changeFilterValue] = useState('');
+
+    const toggleAddPlayerForm = () => {
+        if (isFormDisplayed) {
+            toggleFormDisplay(false);
+        } else {
+            toggleFormDisplay(true);
+        }
+    }
+
+    const [show, setShow] = useState(false);
+    const [tooltipText, changeTooltipText] = useState('');
+    const target = useRef(null);
+
+    useEffect( () => {
+
+    }, [show]);
+
+    const overlayed = () => {
+        const onEnter = () => {
+            setTimeout(() => {
+                setShow(false);
+            }, 2000);
+        }
+        return (
+            <Overlay target={target.current} show={show} placement="right"
+                onEntered={onEnter}>
+                {props => (
+                    <Tooltip id="overlay-example" {...props}>
+                        { tooltipText }
+                    </Tooltip>
+                )}
+            </Overlay>
+        )
+    }
+
     const togglePlayerSelection = (player) => {
         if (player.selected) {
             props.removePlayerFromSelection(player);
@@ -29,12 +68,10 @@ const PlayersContainer = React.memo((props) => {
             props.addPlayerToSelection(player);
             props.togglePlayerSelection(player.id);
         } else {
-            console.log('You cant add more than 8 players');
+            changeTooltipText('You can\'t add more than 8 players');
+            setShow(true);
         }
     }
-
-    const [isFormDisplayed, toggleFormDisplay] = useState(false);
-    const [filterValue, changeFilterValue] = useState('');
 
     const filteredPlayers = props.players
         .filter( player => player.name.toLowerCase().includes(filterValue, 0))
@@ -50,14 +87,6 @@ const PlayersContainer = React.memo((props) => {
             </ListGroup.Item>
         )
     })
-
-    const toggleAddPlayerForm = () => {
-        if (isFormDisplayed) {
-            toggleFormDisplay(false);
-        } else {
-            toggleFormDisplay(true);
-        }
-    }
 
     const changeFilter = (event) => {
         changeFilterValue(event.currentTarget.value);
@@ -83,7 +112,8 @@ const PlayersContainer = React.memo((props) => {
             props.formTable(playersForTable, selectedIds);
             props.removeAllPlayersFromSelection();
         } else {
-            console.log('Please add select exactly 8 players');
+            changeTooltipText('You should add exactly 8 players');
+            setShow(true);
         }
     }
 
@@ -93,9 +123,12 @@ const PlayersContainer = React.memo((props) => {
             <Filter filterValue={filterValue} changeFilter={changeFilter} clearFilter={clearFilter} />
             <Players playersElements={playersElements}/>
             { !isFormDisplayed && (
-                <> <Button variant='outline-success' onClick={toggleAddPlayerForm}>Add new player</Button>
-                <Button variant='outline-success' onClick={formTable}>Form a table</Button> </>
+                <>
+                    <Button variant='outline-success' onClick={toggleAddPlayerForm}>Add new player</Button>
+                    <Button variant='outline-success' ref={target} onClick={formTable}>Form a table</Button>
+                </>
             )}
+            { overlayed() }
             { isFormDisplayed
                 && <AddPlayerFormContainer toggleAddPlayerForm={toggleAddPlayerForm}
                     addPlayer={props.addPlayer} clearForm={props.clearForm} /> }

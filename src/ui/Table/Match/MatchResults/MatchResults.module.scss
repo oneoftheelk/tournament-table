@@ -19,6 +19,14 @@
     }
 }
 
+.player {
+    input {
+        &::placeholder {
+            font-size: 10px;
+        }
+    }
+}
+
 .score {
     width: 125px !important;
 }

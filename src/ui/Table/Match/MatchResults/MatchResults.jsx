@@ -9,11 +9,11 @@ const MatchResults = React.memo((props) => {
 	return (
 		<form onSubmit={props.handleSubmit} className={style.formContainer}>
             <div>
-                <div>
+                <div className={style.player}>
                     <Field component={FormControlComponent} name={'firstPlayerScore'} validate={[numberField]}
                         className={style.score} placeholder={`${props.firstPlayer.name} score`} />
                 </div>
-                <div>
+                <div className={style.player}>
                     <Field component={FormControlComponent} name={'secondPlayerScore'} validate={[numberField]}
                         className={style.score} placeholder={`${props.secondPlayer.name} score`} />
                 </div>
