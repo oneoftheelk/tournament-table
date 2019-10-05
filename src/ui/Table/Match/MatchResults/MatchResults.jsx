@@ -18,7 +18,7 @@ const MatchResults = React.memo((props) => {
             </div>
             <div>
                 <Button variant='outline-success' type='submit'>Apply</Button>
-                <Button variant='outline-danger' onClick={props.closeForm}>Close</Button>
+                <Button variant='outline-danger' type='button' onClick={props.closeForm}>Close</Button>
             </div>
 		</form>
 	)
@@ -32,8 +32,8 @@ export const MatchResultsContainer = React.memo((props) => {
     const addResult = (formData) => {
         const {firstPlayerScore = 0, secondPlayerScore = 0} = formData;
 
-        if (!(firstPlayerScore === '3' && secondPlayerScore < firstPlayerScore
-            || secondPlayerScore === '3' && firstPlayerScore < secondPlayerScore)) {
+        if (!(((firstPlayerScore === '3') && (secondPlayerScore < firstPlayerScore))
+            || ((secondPlayerScore === '3') && (firstPlayerScore < secondPlayerScore)))) {
             return alert('dsad');
         }
 

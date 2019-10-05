@@ -8,7 +8,9 @@ export const Match = React.memo((props) => {
 	const [showResultsForm, toggleResultForm] = useState(false);
 
 	const openForm = () => {
-		toggleResultForm(true);
+		if(!showResultsForm) {
+			toggleResultForm(true);
+		}
 	}
 
 	const closeForm = () => {

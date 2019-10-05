@@ -66,8 +66,17 @@ const playersReducer = (state = initialState, action) => {
                 selectedPlayers: [],
             }
         case APPLY_FINAL_RATING:
-            return state;
-
+            // debugger
+            return {
+                ...state,
+                players: state.players.map( player => {
+                    const inc = action.increment.find( inc => player.id === inc.id ) || {increment: 0};
+                    return {
+                        ...player,
+                        rating: player.rating + inc.increment
+                    }
+                })
+            }
         default: return state;
     }
 }
