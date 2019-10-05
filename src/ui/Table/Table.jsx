@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import style from './Table.module.scss';
@@ -9,9 +9,46 @@ import { clearForm } from '../../redux/store';
 import { Match } from './Match/Match';
 
 const Table = React.memo((props) => {
+	return (
+        <>
+            <h3 className={style.title}>Tournament table</h3>
+            <div className={style.tableContainer}>
+                <div className={style.matchContainer}>
+                    {props.matchesQuarterfinals}
+                </div>
+                <div className={style.matchContainer}>
+                    {props.matchesSemifinals}
+                </div>
+                <div className={style.matchContainer}>
+                    {props.matchesFinals}
+                </div>
+            </div>
+        </>
+	);
+});
+
+const TableContainer = (props) => {
+    const [showResultsForm, toggleResultForm] = useState(false);
+    const [formIsOpenForId, changeId] = useState(null);
+    
+	const openForm = (id) => {
+        changeId(id);
+		if(!showResultsForm) {
+			toggleResultForm(true);
+		}
+	}
+
+	const closeForm = () => {
+		toggleResultForm(false);
+	}
+
     const matches = (matches) => {
         return matches.map( match => {
-            return <Match key={match.id} match={match} {...props} />
+            const isFormOpen = formIsOpenForId === match.id ? true : false;
+
+            return <Match key={match.id} match={match} {...props}
+            openForm={openForm} closeForm={closeForm} showResultsForm={showResultsForm}
+            isFormOpen={isFormOpen} />
         })
     }
 
@@ -19,23 +56,10 @@ const Table = React.memo((props) => {
     const matchesSemifinals = matches(props.matchesSemifinals);
     const matchesFinals = matches(props.matchesFinals);
 
-	return (
-        <>
-            <h3 className={style.title}>Tournament table</h3>
-            <div className={style.tableContainer}>
-                <div className={style.matchContainer}>
-                    {matchesQuarterfinals}
-                </div>
-                <div className={style.matchContainer}>
-                    {matchesSemifinals}
-                </div>
-                <div className={style.matchContainer}>
-                    {matchesFinals}
-                </div>
-            </div>
-        </>
-	);
-});
+    return <Table matchesQuarterfinals={matchesQuarterfinals}
+        matchesSemifinals={matchesSemifinals}
+        matchesFinals={matchesFinals} />
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -51,4 +75,4 @@ export const ComposedTable = compose(
         {addQuarterfinalsResult, addSemifinalsResult, addFinalsResult,
             fillQuarterfinalsScore, fillSemifinalsScore, fillFinalsScore,
             clearForm, changeRating, applyFinalRating})
-)(Table);
+)(TableContainer);

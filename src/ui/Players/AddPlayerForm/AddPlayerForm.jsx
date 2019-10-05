@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import style from './AddPlayerForm.module.scss';
-import { requiredField, numberField, stringWithSpacesField } from '../../../utils/validators/validators';
+import { requiredField, numberField, stringField30 } from '../../../utils/validators/validators';
 import { FormControlComponent } from '../../common/FormControls/FormsControls';
 import Button from 'react-bootstrap/Button';
 
@@ -9,7 +9,7 @@ const AddPlayerForm = React.memo((props) => {
     return (
         <form onSubmit={props.handleSubmit} className={style.formContainer}>
             <Field component={FormControlComponent} name={'name'} placeholder={"Player's name"}
-                validate={[requiredField, stringWithSpacesField]} />
+                validate={[requiredField, stringField30]} />
             <Field component={FormControlComponent} name={'rating'} placeholder={"Player's rating"}
                 validate={[requiredField, numberField]} />
             <div>
@@ -32,6 +32,7 @@ export const AddPlayerFormContainer = React.memo((props) => {
         };
         props.addPlayer(newPlayer);
         props.clearForm();
+        props.toggleAddPlayerForm();
     }
 
     return (
