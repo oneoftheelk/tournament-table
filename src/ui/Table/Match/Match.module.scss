@@ -1,8 +1,25 @@
 .match {
+    display: flex !important;
+    align-items: center !important;
+
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+}
 
-    &:hover {
-        background-color: darken(white, 10%);
-    }
+.player {
+    position: relative;
+
+    display: flex !important;
+}
+
+.name {
+    margin-right: 20px;
+}
+
+.score {
+    position: absolute;
+    right: 10px;
+
+    padding-left: 7px;
+    border-left: 1px solid rgb(212, 212, 212);
 }

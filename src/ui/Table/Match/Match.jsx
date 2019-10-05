@@ -16,8 +16,16 @@ export const Match = React.memo((props) => {
     
 	return (
 		<div className={style.match} onClick={openForm}>
-			<ListGroup.Item><div>{firstPlayer.name} ({firstPlayerScore})</div></ListGroup.Item>
-			<ListGroup.Item><div>{secondPlayer.name} ({secondPlayerScore})</div></ListGroup.Item>
+			<div>
+                <ListGroup.Item className={style.player}>
+                    <div className={style.name}>{firstPlayer.name}</div>
+                    <div className={style.score}>{firstPlayerScore}</div>
+                </ListGroup.Item>
+                <ListGroup.Item className={style.player}>
+                    <div className={style.name}>{secondPlayer.name}</div>
+                    <div className={style.score}>{secondPlayerScore}</div>
+                </ListGroup.Item>
+            </div>
 			{ props.showResultsForm && props.isFormOpen && <MatchResultsContainer {...props} closeForm={closeForm}/> }
 		</div>
 	);

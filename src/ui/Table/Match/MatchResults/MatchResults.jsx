@@ -7,20 +7,31 @@ import Button from 'react-bootstrap/Button';
 
 const MatchResults = React.memo((props) => {
 	return (
-		<form onSubmit={props.handleSubmit} className={style.formContainer}>
-            <div>
-                <span>Player 1 score: </span>
+		// <form onSubmit={props.handleSubmit} className={style.formContainer}>
+        //     <div>
+        //         <span>Player 1 score: </span>
+        //         <Field component={FormControlComponent} name={'firstPlayerScore'} validate={[numberField]} />
+        //     </div>
+        //     <div>
+        //         <span>Player 2 score: </span>
+        //         <Field component={FormControlComponent} name={'secondPlayerScore'} validate={[numberField]} />
+        //     </div>
+        //     <div>
+        //         <Button variant='outline-success' type='submit'>Apply</Button>
+        //         <Button variant='outline-danger' type='button' onClick={props.closeForm}>Close</Button>
+        //     </div>
+		// </form>
+
+        <form onSubmit={props.handleSubmit} className={style.formContainer}>
+            <div className={style.results}>
                 <Field component={FormControlComponent} name={'firstPlayerScore'} validate={[numberField]} />
+                <Button variant='outline-success' type='submit'>✓</Button>
             </div>
-            <div>
-                <span>Player 2 score: </span>
+            <div className={style.results}>
                 <Field component={FormControlComponent} name={'secondPlayerScore'} validate={[numberField]} />
+                <Button variant='outline-danger' type='button' onClick={props.closeForm}>X</Button>
             </div>
-            <div>
-                <Button variant='outline-success' type='submit'>Apply</Button>
-                <Button variant='outline-danger' type='button' onClick={props.closeForm}>Close</Button>
-            </div>
-		</form>
+        </form>
 	)
 });
 
