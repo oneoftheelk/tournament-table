@@ -8,6 +8,8 @@ export const requiredField = (value) => {
 export const numberField = (value) => {
     if (value && !value.match(/^\d+$/)) {
         return 'Value should be a number';
+    } else if (value && value.length > 4) {
+        return 'Maximum 4 digits';
     }
     return undefined;
 }
