@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/oneoftheelk/tournament-table/static/css/main.2f9209d8.chunk.css",
-    "main.js": "/oneoftheelk/tournament-table/static/js/main.fdab822a.chunk.js",
-    "main.js.map": "/oneoftheelk/tournament-table/static/js/main.fdab822a.chunk.js.map",
-    "runtime-main.js": "/oneoftheelk/tournament-table/static/js/runtime-main.7d1f0941.js",
-    "runtime-main.js.map": "/oneoftheelk/tournament-table/static/js/runtime-main.7d1f0941.js.map",
-    "static/css/2.0624914a.chunk.css": "/oneoftheelk/tournament-table/static/css/2.0624914a.chunk.css",
-    "static/js/2.cb1de1c3.chunk.js": "/oneoftheelk/tournament-table/static/js/2.cb1de1c3.chunk.js",
-    "static/js/2.cb1de1c3.chunk.js.map": "/oneoftheelk/tournament-table/static/js/2.cb1de1c3.chunk.js.map",
-    "index.html": "/oneoftheelk/tournament-table/index.html",
-    "precache-manifest.dcfbe0b1f5aa03b3a5c52c4597abb5b8.js": "/oneoftheelk/tournament-table/precache-manifest.dcfbe0b1f5aa03b3a5c52c4597abb5b8.js",
-    "service-worker.js": "/oneoftheelk/tournament-table/service-worker.js",
-    "static/css/2.0624914a.chunk.css.map": "/oneoftheelk/tournament-table/static/css/2.0624914a.chunk.css.map",
-    "static/css/main.2f9209d8.chunk.css.map": "/oneoftheelk/tournament-table/static/css/main.2f9209d8.chunk.css.map"
+    "main.css": "/tournament-table/static/css/main.2f9209d8.chunk.css",
+    "main.js": "/tournament-table/static/js/main.51ca3563.chunk.js",
+    "main.js.map": "/tournament-table/static/js/main.51ca3563.chunk.js.map",
+    "runtime-main.js": "/tournament-table/static/js/runtime-main.972ffc26.js",
+    "runtime-main.js.map": "/tournament-table/static/js/runtime-main.972ffc26.js.map",
+    "static/css/2.0624914a.chunk.css": "/tournament-table/static/css/2.0624914a.chunk.css",
+    "static/js/2.cb1de1c3.chunk.js": "/tournament-table/static/js/2.cb1de1c3.chunk.js",
+    "static/js/2.cb1de1c3.chunk.js.map": "/tournament-table/static/js/2.cb1de1c3.chunk.js.map",
+    "index.html": "/tournament-table/index.html",
+    "precache-manifest.3cdacaa8bd9f64812f00df93a4aa83d4.js": "/tournament-table/precache-manifest.3cdacaa8bd9f64812f00df93a4aa83d4.js",
+    "service-worker.js": "/tournament-table/service-worker.js",
+    "static/css/2.0624914a.chunk.css.map": "/tournament-table/static/css/2.0624914a.chunk.css.map",
+    "static/css/main.2f9209d8.chunk.css.map": "/tournament-table/static/css/main.2f9209d8.chunk.css.map"
   }
 }
