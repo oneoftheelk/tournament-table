@@ -49,7 +49,7 @@ export const MatchResultsContainer = React.memo((props) => {
                 onEntered={onEnter}>
                 {props => (
                     <Tooltip {...props}>
-                        'Score should be 3:2, 3:1 or 3:0'
+                        Score should be 3:2, 3:1 or 3:0
                     </Tooltip>
                 )}
             </Overlay>
@@ -60,7 +60,7 @@ export const MatchResultsContainer = React.memo((props) => {
         const {firstPlayerScore = 0, secondPlayerScore = 0} = formData;
 
         if (!(firstPlayerScore === '3' && secondPlayerScore < firstPlayerScore)
-            || (secondPlayerScore === '3' && firstPlayerScore < secondPlayerScore)) {
+            && !(secondPlayerScore === '3' && firstPlayerScore < secondPlayerScore)) {
             return setShow(true);
         }
 

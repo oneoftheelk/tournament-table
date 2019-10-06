@@ -17,7 +17,6 @@ export const App = React.memo(() => {
                     <Col lg='8' className={style.table}><ComposedTable /></Col>
                 </Row>
             </Container>
-            {/* <Navigation routes={routes.filter(route => route.isNavBar)} /> */}
 		</div>
 	);
 });
