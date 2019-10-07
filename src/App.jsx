@@ -13,8 +13,8 @@ export const App = React.memo(() => {
 		<div className={style.app}>
             <Container>
                 <Row>
-                    <Col lg='4'><ComposedPlayers /></Col>
-                    <Col lg='8' className={style.table}><ComposedTable /></Col>
+                    <Col xl='4' lg='12'><ComposedPlayers /></Col>
+                    <Col xl='8' lg='12' className={style.table}><ComposedTable /></Col>
                 </Row>
             </Container>
 		</div>
