@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tournament-table/precache-manifest.3cdacaa8bd9f64812f00df93a4aa83d4.js"
+  "/tournament-table/precache-manifest.497ad23ad8725255fdb0977155dec961.js"
 );
 
 self.addEventListener('message', (event) => {

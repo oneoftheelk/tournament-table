@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a3fd262c84c2298a0ea12c2a55d84366",
+    "revision": "f51e0f68620d9529c1cdd9eb201af352",
     "url": "/tournament-table/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tournament-table/static/css/2.0624914a.chunk.css"
   },
   {
-    "revision": "72ab0238a540e487a66d",
+    "revision": "0138503c4b843fd27d5b",
     "url": "/tournament-table/static/css/main.2f9209d8.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tournament-table/static/js/2.cb1de1c3.chunk.js"
   },
   {
-    "revision": "72ab0238a540e487a66d",
-    "url": "/tournament-table/static/js/main.51ca3563.chunk.js"
+    "revision": "0138503c4b843fd27d5b",
+    "url": "/tournament-table/static/js/main.183d83be.chunk.js"
   },
   {
     "revision": "58f0c8216013b0fe1e59",
