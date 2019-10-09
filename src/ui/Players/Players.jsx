@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { addPlayer, removeAllPlayersFromSelection,
@@ -36,10 +36,6 @@ const PlayersContainer = React.memo((props) => {
     const [show, setShow] = useState(false);
     const [tooltipText, changeTooltipText] = useState('');
     const target = useRef(null);
-
-    // useEffect( () => {
-
-    // }, [show]);
 
     const togglePlayerSelection = (player) => {
         if (player.selected) {
