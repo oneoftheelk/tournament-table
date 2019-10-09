@@ -11,8 +11,7 @@ import { AddPlayerFormContainer } from './AddPlayerForm/AddPlayerForm';
 import { Filter } from '../common/Filter/Filter';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-import Overlay from 'react-bootstrap/Overlay';
-import Tooltip from 'react-bootstrap/Tooltip';
+import { TooltipComponent } from '../common/Tooltip/TooltipComponent';
 
 const Players = React.memo((props) => {
     return (
@@ -38,28 +37,9 @@ const PlayersContainer = React.memo((props) => {
     const [tooltipText, changeTooltipText] = useState('');
     const target = useRef(null);
 
-    useEffect( () => {
+    // useEffect( () => {
 
-    }, [show]);
-
-    const tooltip = () => {
-        const onEnter = () => {
-            setTimeout(() => {
-                setShow(false);
-            }, 2000);
-        }
-
-        return (
-            <Overlay target={target.current} show={show} placement="right"
-                onEntered={onEnter}>
-                {props => (
-                    <Tooltip {...props}>
-                        { tooltipText }
-                    </Tooltip>
-                )}
-            </Overlay>
-        )
-    }
+    // }, [show]);
 
     const togglePlayerSelection = (player) => {
         if (player.selected) {
@@ -135,7 +115,7 @@ const PlayersContainer = React.memo((props) => {
                  </>
                  : <AddPlayerFormContainer toggleAddPlayerForm={toggleAddPlayerForm}
                         addPlayer={props.addPlayer} clearForm={props.clearForm} /> }
-            { tooltip() }
+            <TooltipComponent target={target} tooltipText={tooltipText} show={show} setShow={setShow} />
         </div>
     )
 });

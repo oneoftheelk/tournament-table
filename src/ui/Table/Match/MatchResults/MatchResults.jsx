@@ -4,10 +4,11 @@ import style from './MatchResults.module.scss';
 import { numberField } from '../../../../utils/validators/validators';
 import { FormControlComponent } from '../../../common/FormControls/FormsControls';
 import Button from 'react-bootstrap/Button';
-import Overlay from 'react-bootstrap/Overlay';
-import Tooltip from 'react-bootstrap/Tooltip';
+import { TooltipComponent } from '../../../common/Tooltip/TooltipComponent';
 
 const MatchResults = React.memo((props) => {
+    const tooltipText = 'Score should be 3:2, 3:1 or 3:0';
+
 	return (
 		<form onSubmit={props.handleSubmit} className={style.formContainer}>
             <div>
@@ -23,7 +24,7 @@ const MatchResults = React.memo((props) => {
             <div className={style.buttons}>
                 <Button variant='outline-success' ref={props.target} type='submit'>✓</Button>
                 <Button variant='outline-danger' type='button' onClick={props.closeForm}>X</Button>
-                { props.tooltip() }
+                <TooltipComponent target={props.target} tooltipText={tooltipText} show={props.show} setShow={props.setShow} />
             </div>
 		</form>
 	)
@@ -36,25 +37,6 @@ export const MatchResultsContainer = React.memo((props) => {
 
     const [show, setShow] = useState(false);
     const target = useRef(null);
-
-    const tooltip = () => {
-        const onEnter = () => {
-            setTimeout(() => {
-                setShow(false);
-            }, 2000);
-        }
-
-        return (
-            <Overlay target={target.current} show={show} placement="right"
-                onEntered={onEnter}>
-                {props => (
-                    <Tooltip {...props}>
-                        Score should be 3:2, 3:1 or 3:0
-                    </Tooltip>
-                )}
-            </Overlay>
-        )
-    }
 
     const addResult = (formData) => {
         const {firstPlayerScore = 0, secondPlayerScore = 0} = formData;
@@ -109,6 +91,6 @@ export const MatchResultsContainer = React.memo((props) => {
     return (
         <MatchResultsReduxForm onSubmit={addResult} closeForm={props.closeForm}
             firstPlayer={firstPlayer} secondPlayer={secondPlayer}
-            target={target} tooltip={tooltip} />
+            target={target} show={show} setShow={setShow} />
     )
 });
